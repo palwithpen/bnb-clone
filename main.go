@@ -9,6 +9,7 @@ import (
 	"syscall"
 	"time"
 
+	"palwithpen.github.com/airbnb/src/config"
 	"palwithpen.github.com/airbnb/src/routes"
 )
 
@@ -22,6 +23,9 @@ func Run() {
 	routes.SetupAuthRoutes(mux, "/auth")
 	routes.SetupUserDetailsRoutes(mux, "/user")
 	handler := loggingMiddleware(mux)
+
+	config.Init()
+	defer config.Close()
 
 	server := &http.Server{
 		Addr:    ":8080",
