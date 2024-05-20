@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	"palwithpen.github.com/airbnb/routes"
+	"palwithpen.github.com/airbnb/src/routes"
 )
 
 func main() {
