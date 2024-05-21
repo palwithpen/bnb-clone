@@ -3,10 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc
 spec:
+  storageClassName: postgres
   accessModes:
-    - {{ .Values.persistence.accessMode }}
+    - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.persistence.size }}
-  storageClassName: postgres
-
+      storage: 1Gi
+status: {}

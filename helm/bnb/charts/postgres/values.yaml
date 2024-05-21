@@ -6,14 +6,24 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
-  port: 5432
+  type: NodePort
+  port:
+    target_port: 5432
+    container_port: 5432
+    node_port: 31431
+resources: {}
+
+postgres:
+  enabled: true
+  postgresUser: postgres
+  postgresPassword: postgres
+  postgresDatabase: fcp
 
 persistence:
   enabled: true
-  accessMode: ReadWriteOnce
+  accessModes:
+    - ReadWriteOnce
   size: 1Gi
-  storageClass: ""
-
-resources: {}
-
+  storageClass: "postgres"
+  hostPath: /opt/bnb
+name: bnb-postgres
