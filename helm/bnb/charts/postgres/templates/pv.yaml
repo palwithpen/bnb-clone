@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+spec:
+  capacity:
+    storage: "1Gi" 
+    storageClassName: postgre
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  hostPath:
+    path: /opt/bnb/postgres
+
