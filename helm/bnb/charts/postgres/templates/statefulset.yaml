@@ -27,23 +27,21 @@ spec:
         - containerPort: 5432
           name: postgres
         volumeMounts:
-        - name: data
+        - name: postgres-pvc
           mountPath: /var/lib/postgresql/data
         env:
         - name: POSTGRES_DB
-          value: fcp
+          value: bnb
         - name: POSTGRES_USER
           value: postgres
         - name: POSTGRES_PASSWORD
           value: postgres
   volumeClaimTemplates:
   - metadata:
-      name: data
+      name: postgres-pvc
     spec:
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
           storage: {{ .Values.persistence.size }}
       storageClassName: "postgres"
-#      hostPath:
-#        path: {{ .Values.persistence.hostPath }}

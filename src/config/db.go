@@ -15,7 +15,7 @@ func Init() {
 	opts := &pg.Options{
 		User:     "postgres",
 		Password: "postgres",
-		Addr:     "172.19.169.166:5432",
+		Addr:     "172.19.169.166:31431",
 		Database: "bnb",
 	}
 
@@ -34,12 +34,15 @@ func Init() {
 func createSchema() error {
 	models := []interface{}{
 		(*entity.User)(nil),
+		(*entity.Profile)(nil),
+
 		// Add other models here
 	}
 
 	for _, model := range models {
 		err := DB.Model(model).CreateTable(&orm.CreateTableOptions{
-			IfNotExists: true,
+			IfNotExists:   true,
+			FKConstraints: true,
 		})
 		if err != nil {
 			return err

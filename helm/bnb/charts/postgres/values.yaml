@@ -1,16 +1,14 @@
 replicaCount: 1
-
 image:
-  repository: postgres
-  tag: "13.3"
+  repository: docker.io/postgres
+  tag: "12.7"
   pullPolicy: IfNotPresent
-
 service:
   type: NodePort
-  port:
+  port: 
     target_port: 5432
     container_port: 5432
-    node_port: 31431
+    node_port: 31431 
 resources: {}
 
 postgres:
@@ -25,5 +23,5 @@ persistence:
     - ReadWriteOnce
   size: 1Gi
   storageClass: "postgres"
-  hostPath: /opt/bnb
+  hostPath: /opt/bnb/postgres
 name: bnb-postgres

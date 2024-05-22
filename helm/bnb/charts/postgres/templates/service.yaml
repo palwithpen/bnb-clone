@@ -1,14 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-service
+  name: {{ template "postgresql-chart.fullname" . }}
   labels:
-    app: postgres
+    app: {{ template "postgresql-chart.name" . }}
+    chart: {{ template "postgresql-chart.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: 5432
-      nodePort: 31432
+  - port: {{ .Values.service.port.container_port }}
+    targetPort: postgres
+    nodePort: 31431
   selector:
-    app: postgres
+    app: {{ template "postgresql-chart.name" . }}
+    release: {{ .Release.Name }}
+
