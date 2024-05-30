@@ -34,7 +34,11 @@ func Init() {
 func createSchema() error {
 	models := []interface{}{
 		(*entity.User)(nil),
-		(*entity.Profile)(nil),
+		(*entity.Role)(nil),
+		(*entity.Permission)(nil),
+		(*entity.Role)(nil),
+		(*entity.RolePermission)(nil),
+		(*entity.UserSession)(nil),
 
 		// Add other models here
 	}

@@ -1,0 +1,44 @@
+Table users {
+    user_id SERIAL [pk]
+    username VARCHAR(50) [unique, not null]
+    email VARCHAR(100) [unique, not null]
+    password_hash VARCHAR(255) [not null]
+    created_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+    updated_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table roles {
+    role_id SERIAL [pk]
+    role_name VARCHAR(50) [unique, not null]
+    description TEXT
+}
+
+Table permissions {
+    permission_id SERIAL [pk]
+    permission_name VARCHAR(50) [unique, not null]
+    description TEXT
+}
+
+Table user_roles {
+    user_id INT [not null, ref: > users.user_id]
+    role_id INT [not null, ref: > roles.role_id]
+    indexes {
+        (user_id, role_id) [pk]
+    }
+}
+
+Table role_permissions {
+    role_id INT [not null, ref: > roles.role_id]
+    permission_id INT [not null, ref: > permissions.permission_id]
+    indexes {
+        (role_id, permission_id) [pk]
+    }
+}
+
+Table user_sessions {
+    session_id SERIAL [pk]
+    user_id INT [not null, ref: > users.user_id]
+    session_token VARCHAR(255) [unique, not null]
+    created_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+    expires_at TIMESTAMP [not null]
+}
