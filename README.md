@@ -1,5 +1,3 @@
-Sure! Here's a detailed README file for an Airbnb clone app using GoLang for the backend, React.js with Vite for the frontend, and PostgreSQL for the database:
-
 ---
 
 # Airbnb Clone App
@@ -152,5 +150,3 @@ Contributions are welcome! Please fork the repository and create a pull request 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-Feel free to customize and expand upon this README file as needed for your specific project requirements.
