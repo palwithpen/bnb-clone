@@ -6,13 +6,13 @@ import (
 )
 
 type APIResponse struct {
-	Status     string            `json:"status"`
-	StatusCode int               `json:"status_code"`
-	Data       interface{}       `json:"data,omitempty"`
-	Error      map[string]string `json:"errors,omitempty"`
+	Status     string      `json:"status"`
+	StatusCode int         `json:"status_code"`
+	Data       interface{} `json:"data,omitempty"`
+	Error      interface{} `json:"errors,omitempty"`
 }
 
-func JSONResponse(w http.ResponseWriter, status string, statusCode int, data interface{}, errors map[string]string) {
+func JSONResponse(w http.ResponseWriter, status string, statusCode int, data interface{}, errors interface{}) {
 	response := APIResponse{
 		Status:     status,
 		StatusCode: statusCode,
